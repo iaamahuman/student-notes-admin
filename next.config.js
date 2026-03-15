@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
-
 module.exports = {
+    experimental: {
+        serverComponentsExternalPackages: ['jsonwebtoken'],
+    },
     async headers() {
         return [
             {
@@ -35,4 +37,3 @@ module.exports = {
         domains: ["m.media-amazon.com", "res.cloudinary.com"]
     }
 };
-/** @type {import('next').NextConfig} */

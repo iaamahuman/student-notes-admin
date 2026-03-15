@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { verify } from "jsonwebtoken";
+import { jwtVerify } from "jose";
 
 interface UserBody {
   data: {
@@ -15,16 +15,17 @@ export async function POST(req: Request) {
     return new NextResponse("Unauthorized User", { status: 401 });
   }
   try {
-    const data = verify(token, process.env.SECRET_KEY || "");
+    const secret = new TextEncoder().encode(process.env.SECRET_KEY || "");
+    const { payload } = await jwtVerify(token, secret);
     const response = new NextResponse(
       JSON.stringify({
         message: "Verified User",
-        user: data,
+        user: payload,
       })
     );
     return response;
   } catch (error) {
-    if (error instanceof Error && error.message === "jwt expired") {
+    if (error instanceof Error && error.message.includes("expired")) {
       return new NextResponse("Session Expired", { status: 401 });
     } else {
       console.log(error);
