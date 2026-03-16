@@ -293,7 +293,7 @@ const Home = () => {
             ))}
           </div>
           <p className="mt-6 mb-2 text-lg font-medium text-gray-700">
-            Profit Every Month (2024)
+            Profit Every Month (2026)
           </p>
           <div className="w-full flex flex-col justify-center items-center mb-6 bg-white p-4 rounded-xl shadow">
             <AreaChart
@@ -330,7 +330,7 @@ const Home = () => {
             </AreaChart>
           </div>
           <p className="mt-6 mb-2 text-lg font-medium text-gray-700">
-            Orders Every Month (2024)
+            Orders Every Month (2026)
           </p>
           <div className="w-full flex flex-col justify-center items-center mb-6 bg-white p-4 rounded-xl shadow">
             <AreaChart
