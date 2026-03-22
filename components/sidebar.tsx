@@ -122,7 +122,7 @@ const Sidebar = () => {
         <main className="bg-[#15161b] w-[20%] h-[100vh] py-6 pl-4 pr-6 rounded-r-2xl overflow-hidden">
           <div className="mt-2 mb-6">
             <p className="text-slate-200 text-lg font-semibold">
-              Ecommercely Admin
+              Admin Panel
             </p>
           </div>
           <ul className="">

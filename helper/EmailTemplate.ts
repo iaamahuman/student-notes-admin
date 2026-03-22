@@ -144,7 +144,7 @@ export const templateHandler = (name: string, token: string) => {
           <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
             <tr>
               <td class="email-masthead">
-                <a href="https://ecommercely-admin.vercel.app" class="f-fallback email-masthead_name">Ecommercely Admin Panel</a>
+                <a href="https://ecommercely-admin.vercel.app" class="f-fallback email-masthead_name">Admin Panel Panel</a>
               </td>
             </tr>
             <!-- Email Body -->

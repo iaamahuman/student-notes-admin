@@ -60,9 +60,9 @@ export async function POST(req: Request, res: Response) {
     }
 
     const mailOptions = {
-      from: "Ecommercely Admin <krishwork11@gmail.com>",
+      from: "Admin Panel <krishwork11@gmail.com>",
       to: email,
-      subject: "Password Reset - Ecommercely Admin",
+      subject: "Password Reset - Admin Panel",
       html: templateHandler(user.name, resetToken),
     };
 

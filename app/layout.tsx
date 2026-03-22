@@ -10,7 +10,7 @@ const montserrat = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Ecommerce Admin Panel",
+  title: "Student Note Books Admin",
   description: "Admin Dashboard for Ecommerce Website",
 };
 
