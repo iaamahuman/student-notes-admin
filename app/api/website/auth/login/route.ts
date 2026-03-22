@@ -42,6 +42,7 @@ export async function POST(req: Request) {
       JSON.stringify({
         message: "Successfully logged in",
         user: { ...modifiedUser },
+        token,
       })
     );
 
