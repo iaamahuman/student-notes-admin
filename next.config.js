@@ -25,7 +25,7 @@ module.exports = {
                 headers: [
                     {
                         key: 'Access-Control-Allow-Origin',
-                        value: 'https://student-notes-website.vercel.app',
+                        value: '*',
                     },
                     {
                         key: 'Access-Control-Allow-Credentials',
