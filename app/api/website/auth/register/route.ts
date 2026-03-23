@@ -51,6 +51,7 @@ export async function POST(req: Request) {
         JSON.stringify({
           message: "Successfully Account Created",
           id: newUser.id,
+          token,
         })
       );
 
