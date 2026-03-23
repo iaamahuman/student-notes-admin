@@ -196,7 +196,7 @@ const Order = () => {
                       <TableCell>
                         <Link
                           target="_blank"
-                          href={`https://ecommercely.vercel.app/product/${product.productId}`}
+                          href={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/product/${product.productId}`}
                           className="text-blue-600 hover:underline"
                         >
                           {product.name}
