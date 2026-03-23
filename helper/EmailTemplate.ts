@@ -187,3 +187,72 @@ export const templateHandler = (name: string, token: string) => {
   </html>
   `;
 };
+export const orderConfirmationTemplate = (name: string, orderId: string, products: Array<{name: string, price: number, quantity: number}>, total: number) => {
+  const productRows = products.map(p => `
+    <tr>
+      <td style="padding: 8px; border-bottom: 1px solid #eee;">${p.name}</td>
+      <td style="padding: 8px; border-bottom: 1px solid #eee; text-align:center;">${p.quantity}</td>
+      <td style="padding: 8px; border-bottom: 1px solid #eee; text-align:right;">₹${p.price * p.quantity}</td>
+    </tr>
+  `).join("");
+
+  return `
+  <html>
+  <body style="font-family: 'Nunito Sans', Helvetica, Arial, sans-serif; background-color: #F2F4F6; color: #51545E;">
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr><td align="center">
+        <table width="570" cellpadding="0" cellspacing="0" style="background:#fff; margin:30px auto; border-radius:8px;">
+          <tr><td style="padding:30px; text-align:center; background:#0f172a; border-radius:8px 8px 0 0;">
+            <h1 style="color:#fff; margin:0;">Student Note Books</h1>
+          </td></tr>
+          <tr><td style="padding:40px;">
+            <h2>Order Confirmed! 🎉</h2>
+            <p>Hi ${name}, your order has been placed successfully.</p>
+            <p><strong>Order ID:</strong> ${orderId}</p>
+            <table width="100%" cellpadding="0" cellspacing="0" style="margin:20px 0; border:1px solid #eee; border-radius:4px;">
+              <tr style="background:#f8f8f8;">
+                <th style="padding:10px; text-align:left;">Product</th>
+                <th style="padding:10px; text-align:center;">Qty</th>
+                <th style="padding:10px; text-align:right;">Price</th>
+              </tr>
+              ${productRows}
+              <tr>
+                <td colspan="2" style="padding:10px; font-weight:bold;">Total</td>
+                <td style="padding:10px; text-align:right; font-weight:bold;">₹${total}</td>
+              </tr>
+            </table>
+            <p>Thank you for shopping with us!</p>
+            <p>Thanks,<br>Student Note Books Team</p>
+          </td></tr>
+        </table>
+      </td></tr>
+    </table>
+  </body>
+  </html>
+  `;
+};
+
+export const welcomeEmailTemplate = (name: string) => {
+  return `
+  <html>
+  <body style="font-family: 'Nunito Sans', Helvetica, Arial, sans-serif; background-color: #F2F4F6; color: #51545E;">
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr><td align="center">
+        <table width="570" cellpadding="0" cellspacing="0" style="background:#fff; margin:30px auto; border-radius:8px;">
+          <tr><td style="padding:30px; text-align:center; background:#0f172a; border-radius:8px 8px 0 0;">
+            <h1 style="color:#fff; margin:0;">Student Note Books</h1>
+          </td></tr>
+          <tr><td style="padding:40px;">
+            <h2>Welcome, ${name}! 🎒</h2>
+            <p>Thank you for creating an account with Student Note Books.</p>
+            <p>We have everything you need for your studies — notebooks, pens, stationery and more.</p>
+            <a href="${process.env.NEXT_PUBLIC_WEBSITE_URL}" style="display:inline-block; padding:12px 24px; background:#0f172a; color:#fff; text-decoration:none; border-radius:6px; margin:20px 0;">Start Shopping</a>
+            <p>Thanks,<br>Student Note Books Team</p>
+          </td></tr>
+        </table>
+      </td></tr>
+    </table>
+  </body>
+  </html>
+  `;
+};
