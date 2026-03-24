@@ -7,7 +7,7 @@ module.exports = {
         ignoreBuildErrors: true,
     },
     experimental: {
-        serverComponentsExternalPackages: ['jsonwebtoken'],
+        serverComponentsExternalPackages: ['jsonwebtoken', 'nodemailer'],
     },
     async headers() {
         return [

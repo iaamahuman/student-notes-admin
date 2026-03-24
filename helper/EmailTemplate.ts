@@ -1,4 +1,14 @@
-export const templateHandler = (name: string, token: string) => {
+export const passwordResetTemplate = ({
+  name,
+  appName,
+  homeUrl,
+  resetUrl,
+}: {
+  name: string;
+  appName: string;
+  homeUrl: string;
+  resetUrl: string;
+}) => {
   return `
   <html>
   <head>
@@ -137,14 +147,14 @@ export const templateHandler = (name: string, token: string) => {
     </style>
   </head>
   <body>
-    <span class="preheader">Use this link to reset your password. The link is only valid for 24 hours.</span>
+    <span class="preheader">Use this link to reset your password. The link is only valid for 2 hours.</span>
     <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
       <tr>
         <td align="center">
           <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
             <tr>
               <td class="email-masthead">
-                <a href="https://student-notes-admin.vercel.app" class="f-fallback email-masthead_name">Admin Panel Panel</a>
+                <a href="${homeUrl}" class="f-fallback email-masthead_name">${appName}</a>
               </td>
             </tr>
             <!-- Email Body -->
@@ -155,14 +165,14 @@ export const templateHandler = (name: string, token: string) => {
                   <tr>
                     <td class="content-cell">
                       <h1>Hi ${name},</h1>
-                      <p>You recently requested to reset your password for your Studnt note books account. Use the button below to reset it. <strong>This password reset is only valid for the next 2 hours.</strong></p>
+                      <p>You recently requested to reset your password for your ${appName} account. Use the button below to reset it. <strong>This password reset is only valid for the next 2 hours.</strong></p>
                       <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                         <tr>
                           <td align="center">
                             <table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
                               <tr>
                                 <td align="center">
-                                  <a href="https://student-notes-admin.vercel.app/${token}" class="f-fallback button button--green" target="_blank">Reset your password</a>
+                                  <a href="${resetUrl}" class="f-fallback button button--green" target="_blank">Reset your password</a>
                                 </td>
                               </tr>
                             </table>
@@ -170,7 +180,7 @@ export const templateHandler = (name: string, token: string) => {
                         </tr>
                       </table>
                       <p>If you did not request a password reset, please ignore this email.</p>
-                      <p>Thanks,<br>The Student Note Books team<br>Sanjai</p>
+                      <p>Thanks,<br>The ${appName} team</p>
                       <!-- Sub copy -->
                       <table class="body-sub" role="presentation">
                       </table>
@@ -232,7 +242,7 @@ export const orderConfirmationTemplate = (name: string, orderId: string, product
   `;
 };
 
-export const welcomeEmailTemplate = (name: string) => {
+export const welcomeEmailTemplate = (name: string, websiteUrl: string) => {
   return `
   <html>
   <body style="font-family: 'Nunito Sans', Helvetica, Arial, sans-serif; background-color: #F2F4F6; color: #51545E;">
@@ -245,8 +255,8 @@ export const welcomeEmailTemplate = (name: string) => {
           <tr><td style="padding:40px;">
             <h2>Welcome, ${name}! 🎒</h2>
             <p>Thank you for creating an account with Student Note Books.</p>
-            <p>We have everything you need for your studies — notebooks, pens, stationery and more.</p>
-            <a href="${process.env.NEXT_PUBLIC_WEBSITE_URL}" style="display:inline-block; padding:12px 24px; background:#0f172a; color:#fff; text-decoration:none; border-radius:6px; margin:20px 0;">Start Shopping</a>
+            <p>We have everything you need for your studies - notebooks, pens, stationery and more.</p>
+            <a href="${websiteUrl}" style="display:inline-block; padding:12px 24px; background:#0f172a; color:#fff; text-decoration:none; border-radius:6px; margin:20px 0;">Start Shopping</a>
             <p>Thanks,<br>Student Note Books Team</p>
           </td></tr>
         </table>

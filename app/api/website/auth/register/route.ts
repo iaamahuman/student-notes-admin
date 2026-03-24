@@ -1,19 +1,9 @@
-import nodemailer from "nodemailer";
-import { welcomeEmailTemplate } from "@/helper/EmailTemplate";
 import jwt from "jsonwebtoken";
 import { NextResponse } from "next/server";
 import prismadb from "@/lib/prismadb";
 import { getCookieString } from "@/lib/cookie-helper";
-import { Prisma } from "@prisma/client";
+import { sendWelcomeEmail } from "@/lib/mail";
 var bcrypt = require("bcryptjs");
-
-const transporter = nodemailer.createTransport({
-  service: "Gmail",
-  auth: {
-    user: process.env.NODEMAILER_USER,
-    pass: process.env.NODEMAILER_PASS,
-  },
-});
 
 interface RegisterBody {
   email: string;
@@ -56,16 +46,14 @@ export async function POST(req: Request) {
       );
 
       response.headers.set("Set-Cookie", getCookieString("token", token));
-	  try {
-  await transporter.sendMail({
-    from: `Student Note Books <${process.env.NODEMAILER_USER}>`,
-    to: email,
-    subject: "Welcome to Student Note Books!",
-    html: welcomeEmailTemplate(name),
-  });
-} catch (emailError) {
-  console.log("Welcome email error:", emailError);
-}
+      try {
+        await sendWelcomeEmail({
+          to: email,
+          name,
+        });
+      } catch (emailError) {
+        console.log("Welcome email error:", emailError);
+      }
       return response;
     } else {
       return new NextResponse("User Already Exists", { status: 403 });

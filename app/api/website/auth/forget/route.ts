@@ -1,21 +1,13 @@
-import nodemailer from "nodemailer";
 import crypto from "crypto";
 import prismadb from "@/lib/prismadb";
 import { NextResponse } from "next/server";
-import { templateHandler } from "@/helper/EmailTemplate";
-const transporter = nodemailer.createTransport({
-  service: "Gmail",
-  auth: {
-    user: process.env.NODEMAILER_USER,
-    pass: process.env.NODEMAILER_PASS,
-  },
-});
+import { sendPasswordResetEmail } from "@/lib/mail";
 
 interface ForgetPasswordBody {
   email: string;
 }
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   try {
     const { email } = await req.json() as ForgetPasswordBody;
     const user = await prismadb.user.findFirst({
@@ -59,14 +51,12 @@ export async function POST(req: Request, res: Response) {
       });
     }
 
-    const mailOptions = {
-      from: "Ecommercely <krishwork11@gmail.com>",
+    await sendPasswordResetEmail({
+      app: "website",
       to: email,
-      subject: "Password Reset - Ecommercely",
-      html: templateHandler(user.name, resetToken),
-    };
-
-    await transporter.sendMail(mailOptions);
+      name: user.name,
+      resetToken,
+    });
     return new NextResponse("Password Reset Email Sent", { status: 200 });
   } catch (error) {
     console.error(error);

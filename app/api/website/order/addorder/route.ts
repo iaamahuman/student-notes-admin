@@ -1,16 +1,6 @@
 import { NextResponse } from "next/server";
 import prismadb from "@/lib/prismadb";
-import { Prisma } from "@prisma/client";
-import nodemailer from "nodemailer";
-import { orderConfirmationTemplate } from "@/helper/EmailTemplate";
-
-const transporter = nodemailer.createTransport({
-  service: "Gmail",
-  auth: {
-    user: process.env.NODEMAILER_USER,
-    pass: process.env.NODEMAILER_PASS,
-  },
-});
+import { sendOrderConfirmationEmail } from "@/lib/mail";
 
 export async function POST(req: Request) {
   try {
@@ -22,11 +12,12 @@ export async function POST(req: Request) {
     try {
       const user = await prismadb.user.findUnique({ where: { id: body.userId } });
       if (user) {
-        await transporter.sendMail({
-          from: `Student Note Books <${process.env.NODEMAILER_USER}>`,
+        await sendOrderConfirmationEmail({
           to: user.email,
-          subject: "Order Confirmed - Student Note Books",
-          html: orderConfirmationTemplate(user.name, data.id, body.products, body.total),
+          name: user.name,
+          orderId: data.id,
+          products: body.products,
+          total: body.total,
         });
       }
     } catch (emailError) {
