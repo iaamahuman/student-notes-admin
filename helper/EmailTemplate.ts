@@ -144,7 +144,7 @@ export const templateHandler = (name: string, token: string) => {
           <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
             <tr>
               <td class="email-masthead">
-                <a href="https://ecommercely-admin.vercel.app" class="f-fallback email-masthead_name">Admin Panel Panel</a>
+                <a href="https://student-notes-admin.vercel.app" class="f-fallback email-masthead_name">Admin Panel Panel</a>
               </td>
             </tr>
             <!-- Email Body -->
@@ -155,14 +155,14 @@ export const templateHandler = (name: string, token: string) => {
                   <tr>
                     <td class="content-cell">
                       <h1>Hi ${name},</h1>
-                      <p>You recently requested to reset your password for your Ecommercely account. Use the button below to reset it. <strong>This password reset is only valid for the next 2 hours.</strong></p>
+                      <p>You recently requested to reset your password for your Studnt note books account. Use the button below to reset it. <strong>This password reset is only valid for the next 2 hours.</strong></p>
                       <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0" role="presentation">
                         <tr>
                           <td align="center">
                             <table width="100%" border="0" cellspacing="0" cellpadding="0" role="presentation">
                               <tr>
                                 <td align="center">
-                                  <a href="https://ecommercely-admin.vercel.app/verify-token/${token}" class="f-fallback button button--green" target="_blank">Reset your password</a>
+                                  <a href="https://student-notes-admin.vercel.app/${token}" class="f-fallback button button--green" target="_blank">Reset your password</a>
                                 </td>
                               </tr>
                             </table>
@@ -170,7 +170,7 @@ export const templateHandler = (name: string, token: string) => {
                         </tr>
                       </table>
                       <p>If you did not request a password reset, please ignore this email.</p>
-                      <p>Thanks,<br>The Ecommercely team<br>Krish Jotaniya</p>
+                      <p>Thanks,<br>The Student Note Books team<br>Sanjai</p>
                       <!-- Sub copy -->
                       <table class="body-sub" role="presentation">
                       </table>
